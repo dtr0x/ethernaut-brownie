@@ -28,8 +28,18 @@ def setup_instance(main):
        print('==================== Executing solution code ====================')
 
        if os.path.isfile(f'contracts/attacks/{levelName}Attack.sol'):
-           attack = eval(levelName + 'Attack') \
-               .deploy(instance, {'from': player})
+           attackContract = eval(levelName + 'Attack')
+           constructorAbi = [i for i in attackContract.abi \
+                             if i['type'] == 'constructor']
+
+           if constructorAbi and \
+                constructorAbi[0]['stateMutability'] == 'payable':
+               value = '10 ether'
+           else:
+               value = 0
+
+           attack = \
+               attackContract.deploy(instance, {'from': player, 'value': value})
        else:
            attack = None
 
