@@ -10,7 +10,6 @@ contract Delegate {
   }
 
   function pwn() public {
-    // owner = msg.sender;
     owner = tx.origin;
   }
 }
