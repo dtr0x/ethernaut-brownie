@@ -1,0 +1,6 @@
+networks:
+  default: rinkeby-fork
+compiler:
+  solc:
+    remappings:
+      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@3.2.0"
