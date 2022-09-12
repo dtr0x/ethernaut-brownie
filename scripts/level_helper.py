@@ -29,8 +29,12 @@ def setup_instance(main):
            else:
                value = 0
 
-           attack = \
-               attackContract.deploy(instance, {'from': player, 'value': value})
+           if constructorAbi:
+               attack = attackContract.deploy(\
+                    instance, {'from': player, 'value': value})
+           else:
+               attack = attackContract.deploy(\
+                    {'from': player, 'value': value})
        else:
            attack = None
 
