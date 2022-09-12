@@ -12,18 +12,9 @@ def setup_instance(main):
        level = eval(levelName + 'Factory').deploy({'from': a[0]})
        ethernaut.registerLevel(level)
 
-       instanceContract = eval(levelName)
-       constructorAbi = [i for i in instanceContract.abi \
-                         if i['type'] == 'constructor']
-
-       if constructorAbi and constructorAbi[0]['stateMutability'] == 'payable':
-           value = '10 ether'
-       else:
-           value = 0
-
        player = a[1]
-       ethernaut.createLevelInstance(level, {'from': player, 'value': value})
-       instance = instanceContract.at(history[-1].new_contracts[0])
+       ethernaut.createLevelInstance(level, {'from': player, 'value': '10 ether'})
+       instance = eval(levelName).at(history[-1].new_contracts[0])
 
        print('==================== Executing solution code ====================')
 
