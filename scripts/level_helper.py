@@ -13,8 +13,12 @@ def setup_instance(main):
        ethernaut.registerLevel(level)
 
        player = a[1]
-       ethernaut.createLevelInstance(level, {'from': player, 'value': '10 ether'})
-       instance = eval(levelName).at(history[-1].new_contracts[0])
+       ethernaut.createLevelInstance(level, {'from': player, 'value': '0.001 ether'})
+       if levelName != 'PuzzleWallet':
+           instance = eval(levelName).at(history[-1].new_contracts[0])
+       else:
+           # this is the proxy contract needed
+           instance = PuzzleWallet.at(history[-1].new_contracts[1])
 
        print('==================== Executing solution code ====================')
 
@@ -25,7 +29,7 @@ def setup_instance(main):
 
            if constructorAbi and \
                 constructorAbi[0]['stateMutability'] == 'payable':
-               value = '10 ether'
+               value = '0.001 ether'
            else:
                value = 0
 
