@@ -14,10 +14,10 @@ def setup_instance(main):
 
        player = a[1]
        ethernaut.createLevelInstance(level, {'from': player, 'value': '0.001 ether'})
-       if levelName not in {'PuzzleWallet', 'Motorbike'}:
+       if levelName not in {'PuzzleWallet', 'Motorbike', 'DoubleEntryPoint'}:
            instance = eval(levelName).at(history[-1].new_contracts[0])
        else:
-           instance = eval(levelName).at(history[-1].new_contracts[1])
+           instance = eval(levelName).at(history[-1].new_contracts[-1])
 
        print('==================== Executing solution code ====================')
 
