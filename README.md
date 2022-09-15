@@ -6,7 +6,7 @@ The code does not interact with the Rinkeby network, and instead sets up a devel
 ## Setup
 ```
 brownie pm install OpenZeppelin/openzeppelin-contracts@3.2.0
-brownie pm install OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0
+brownie pm install OpenZeppelin/openzeppelin-contracts@4.0.0
 ```
 
 ## Usage
